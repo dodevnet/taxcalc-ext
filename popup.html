@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>税金计算工具</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">税金计算工具</h1>
+      <p class="app__subtitle">含税 / 不含税金额与税额换算</p>
+    </header>
+
+    <!-- 模式切换 -->
+    <section class="mode" role="tablist" aria-label="计算模式">
+      <button
+        type="button"
+        class="mode__btn is-active"
+        id="mode-inclusive"
+        data-mode="inclusive"
+        role="tab"
+        aria-selected="true"
+      >
+        含税 → 不含税
+      </button>
+      <button
+        type="button"
+        class="mode__btn"
+        id="mode-exclusive"
+        data-mode="exclusive"
+        role="tab"
+        aria-selected="false"
+      >
+        不含税 → 含税
+      </button>
+    </section>
+
+    <!-- 输入区 -->
+    <section class="card">
+      <div class="field">
+        <label class="field__label" id="amount-label" for="amount-input">
+          含税金额（元）
+        </label>
+        <input
+          class="field__input"
+          id="amount-input"
+          type="number"
+          min="0"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="请输入金额，例如 113"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="rate-select">税率</label>
+        <div class="rate">
+          <select class="rate__select" id="rate-select">
+            <option value="1">1%</option>
+            <option value="3">3%</option>
+            <option value="6">6%</option>
+            <option value="9">9%</option>
+            <option value="13" selected>13%</option>
+            <option value="custom">自定义…</option>
+          </select>
+          <input
+            class="rate__custom"
+            id="rate-custom"
+            type="number"
+            min="0"
+            step="0.1"
+            inputmode="decimal"
+            placeholder="如 5 或 1.5"
+            autocomplete="off"
+            hidden
+          />
+          <span class="rate__unit">%</span>
+        </div>
+      </div>
+
+      <p class="error" id="error-msg" role="alert" hidden></p>
+
+      <button type="button" class="btn" id="calc-btn">计算</button>
+    </section>
+
+    <!-- 结果区 -->
+    <section class="card result" id="result" aria-live="polite">
+      <div class="result__row">
+        <span class="result__label" id="result-main-label">不含税金额</span>
+        <span class="result__value" id="result-main" title="点击复制">—</span>
+      </div>
+      <div class="result__row">
+        <span class="result__label" id="result-sub-label">含税金额</span>
+        <span class="result__value" id="result-sub" title="点击复制">—</span>
+      </div>
+      <div class="result__row result__row--tax">
+        <span class="result__label">税额</span>
+        <span class="result__value" id="result-tax" title="点击复制">—</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="popup.js" defer></script>
+</body>
+</html>

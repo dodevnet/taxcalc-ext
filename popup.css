@@ -1,0 +1,243 @@
+/* ===== 基础与变量 ===== */
+:root {
+  --bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --tax: #dc2626;
+  --error: #dc2626;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 340px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.app {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===== 头部 ===== */
+.app__header {
+  text-align: center;
+}
+
+.app__title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.app__subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ===== 模式切换 ===== */
+.mode {
+  display: flex;
+  background: #e2e8f0;
+  border-radius: var(--radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.mode__btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 8px 4px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mode__btn.is-active {
+  background: var(--card-bg);
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== 卡片 ===== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== 表单字段 ===== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.field__input,
+.rate__select,
+.rate__custom {
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field__input:focus,
+.rate__select:focus,
+.rate__custom:focus {
+  border-color: var(--primary);
+}
+
+/* ===== 税率行 ===== */
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rate__select {
+  flex: 1;
+}
+
+.rate__custom {
+  flex: 1;
+}
+
+.rate__unit {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ===== 错误提示 ===== */
+.error {
+  color: var(--error);
+  font-size: 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+/* ===== 按钮 ===== */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ===== 结果区 ===== */
+.result__row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0;
+}
+
+.result__row + .result__row {
+  border-top: 1px dashed var(--border);
+}
+
+.result__label {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.result__value {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 1px 6px;
+  margin: -1px -6px;
+  transition: background 0.15s;
+}
+
+.result__value:hover {
+  background: #eef2ff;
+}
+
+.result__value:active {
+  background: #e0e7ff;
+}
+
+/* 复制成功/失败的轻量反馈提示 */
+.result__copied {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #16a34a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.result__copied.is-visible {
+  opacity: 1;
+}
+
+.result__copied.is-error {
+  background: var(--error);
+}
+
+.result__row--tax .result__label,
+.result__row--tax .result__value {
+  color: var(--tax);
+}
