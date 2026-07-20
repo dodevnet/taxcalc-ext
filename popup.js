@@ -304,7 +304,7 @@
       rowEl.appendChild(tip);
     }
     tip.textContent = message;
-    tip.classList.toggle('is-error', Boolean(isError));
+    tip.classList.toggle('is-error', isError);
     // 强制重绘以确保过渡动画稳定触发
     void tip.offsetWidth;
     tip.classList.add('is-visible');

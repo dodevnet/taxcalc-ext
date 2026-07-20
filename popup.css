@@ -116,9 +116,9 @@ body {
   transition: border-color 0.15s;
 }
 
-.field__input:focus,
-.rate__select:focus,
-.rate__custom:focus {
+.field__input:focus-visible,
+.rate__select:focus-visible,
+.rate__custom:focus-visible {
   border-color: var(--primary);
 }
 
